@@ -1,0 +1,28 @@
+{% block menu %}
+    <div class="slider slider__padding slider_top">
+        <header class="header">
+            <a href="/" class="link__logo"><img src="static/images/logo.png" alt="logotip" title="logo" class="img__logo"></a>
+            <nav>
+                <ul class="top__menu">
+                    <li><a href="/" class="top__menu_link top__menu_link_sctive">HOME</a></li>
+                    <li><a href="{% url 'product' %}" class="top__menu_link">PRODUCTS</a></li>
+                    <li><a href="#" class="top__menu_link">HISTORY</a></li>
+                    <li><a href="{% url 'test' %}" class="top__menu_link">TEST_JSON</a></li>
+                    <li><a href="{% url 'contact' %}" class="top__menu_link">CONTACT</a></li>
+                    <li><a href="#" class="top__menu_link"><img src="static/images/search.png" alt="Поиск"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="slider__discription">
+            <p class="slider__discription_information_type">TRENDING</p>
+            <h2 class="slider__description_h2">Fishnet Chair</h2>
+            <p class="slider__discription_information">Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black</p>
+            <a href="#" class="button">ORDER US <img src="static/images/arrow.png" alt="Arrow to got to" class="button__arrow"></a>
+        </div>
+        <div class="slider__btn">
+            <a href="#" class="slider_btn_link"></a>
+            <a href="#" class="slider_btn_link slider_btn_link_active"></a>
+            <a href="#" class="slider_btn_link"></a>
+        </div>
+    </div>
+{% endblock %}

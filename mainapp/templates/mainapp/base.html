@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+</head>
+<body>
+	<div class="container">
+        {% block menu %}
+            <div class="slider slider__padding simple_menu">
+                <header class="header">
+                    <a href="/" class="link__logo"><img src="{% static 'images/logo.png' %}" alt="logotip" title="logo" class="img__logo"></a>
+                    <nav>
+                        {% block menu_items %}
+                            {% include 'includes/inc_categories_menu.html' %}
+                        {% endblock %}
+                    </nav>
+                </header>
+                <h2 class="product__menu_title">{{ title|title }}</h2>
+            </div>
+        {% endblock %}
+
+        {% block content %}
+
+        {% endblock %}
+
+	</div>
+
+    {% block footer %}
+        <footer class="footer">
+            <div class="footer__wrap footer__wrap_top">
+                <div class="footer__item footer__item_grow0">
+                    <h3 class="footer__item_title">Contact Us</h3>
+                    <p class="footer__item_p_slim">
+                        132A Bridge Road Richmond VIC
+                        Australia.
+                    </p>
+                    <p class="footer__item_p_slim">
+                        Talk to us on 1300 132
+                        <br>
+                        <a href="mailto:info@interior.com" class="email">info@interior.com</a>
+                    </p>
+                </div>
+                <div class="footer__item footer__item_grow1">
+                    <h3 class="footer__item_title">Useful Information</h3>
+                    <div class="footer__item_wrap">
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Sales terms</a></div>
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Customer care</a></div>
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Delivery</a></div>
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Architect accounts</a></div>
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Careers</a></div>
+                        <div class="footer__item_wrap_a"><a href="#" class="footer__item_useful_a">Exchanges &amp; returns</a></div>
+                    </div>
+                </div>
+                <div class="footer__item footer__item_grow1">
+                    <h3 class="footer__item_title">Let’s Stay in Touch!</h3>
+                    <p class="footer__item_p_slim">
+                        Suscribe to know about our latest news, products and special offers just for suscribers.
+                    </p>
+                    <input type="email" placeholder="your email address" class="input_yor_email">
+                </div>
+            </div>
+            <div class="footer__wrap footer__wrap_bottom">
+                <div class="footer__item">
+                    <p class="copyright">© Copyright - INTERIOR {% now "Y" %}. All Rights Reserved.</p>
+                </div>
+                <div class="footer__item">
+                    <a href="#" class="footer__item_asoc"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer__item_asoc"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="footer__item_asoc"><i class="fab fa-goodreads-g"></i>+</a>
+                    <a href="#" class="footer__item_asoc"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+                <div class="footer__item">
+                    <a href="#" class="footer__item_terms">Terms &amp; Conditions</a> / <a href="#" class="footer__item_terms">Privacy policy &amp; Cookies</a>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+
+</body>
+</html>
