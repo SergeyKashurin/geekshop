@@ -15,6 +15,16 @@
             <a href="#" class="featured__new_explore_all">explore all <img src="static/images/arrow.png" alt="Arrow to got to" class="button__arrow"></a>
         </div>
         <div class="short__prev_items">
+            {% for product in products %}
+              <div class="short__prev short__prev_bg{{ forloop.counter }}">
+                 <div class="short__prev_item">
+                    <a href="#" class="short__prev_btn"><img src="static/images/arrow_big.png" alt="Arrow to got to" class="buttin_arrow_big"></a>
+                    <h3 class="short__prev_title">{{ product.name }}</h3>
+                    <p class="short__prev_discription">Category [{{ product.category.name }}] {{ product.description }}</p>
+                </div>
+              </div>
+            {% endfor %}
+            <!--
             <div class="short__prev short__prev_bg1">
                 <div class="short__prev_item">
                     <a href="#" class="short__prev_btn"><img src="static/images/arrow_big.png" alt="Arrow to got to" class="buttin_arrow_big"></a>
@@ -43,6 +53,7 @@
                     <p class="short__prev_discription">Seat and back with upholstery made of cold cure </p>
                 </div>
             </div>
+            -->
         </div>
     </section>
 

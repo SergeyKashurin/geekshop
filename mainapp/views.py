@@ -1,19 +1,26 @@
 from django.shortcuts import render
 import json
+from .models import ProductCategory, Product
 
 # Create your views here.
 
 
 def main(request):
-    return render(request, 'mainapp/index.html')
+    title = 'Home'
+    products = Product.objects.all()[:4]
+
+    content = {'title': title, 'products': products}
+
+    return render(request, 'mainapp/index.html', content)
 
 
-def product(request):
+def product(request, pk=None):
+    print(pk)
     content = {
         'title': 'Our Products Range',
         'top__menu': [
             {'href': 'main', 'name': 'HOME'},
-            {'href': 'product', 'name': 'PRODUCTS'},
+            {'href': 'product:index', 'name': 'PRODUCTS'},
             {'href': 'main', 'name': 'HISTORY'},
             {'href': 'test', 'name': 'TEST_JSON'},
             {'href': 'contact', 'name': 'CONTACT'}],
