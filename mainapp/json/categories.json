@@ -1,0 +1,20 @@
+[{
+  "name": "Home",
+  "description": "Things for your home"
+},
+{
+  "name": "Office",
+  "description": "Things for your office"
+},
+{
+  "name": "Furniture",
+  "description": "Any our furniture"
+},
+{
+  "name": "Modern",
+  "description": "Some modern things"
+},
+{
+  "name": "Classic",
+  "description": "Classic things"
+}]

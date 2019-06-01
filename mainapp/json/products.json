@@ -1,0 +1,24 @@
+[{
+  "category": "Home",
+  "name": "Usefull chair",
+  "short_desc": "short_desc usefull chair",
+  "description": "description usefull chair",
+  "price": 120,
+  "quantity": 3
+},
+{
+  "category": "Home",
+  "name": "Super chair",
+  "short_desc": "short_desc Super chair",
+  "description": "description Super chair",
+  "price": 90,
+  "quantity": 9
+},{
+  "category": "Home",
+  "name": "Third chair",
+  "short_desc": "short_desc Third chair",
+  "description": "description Third chair",
+  "price": 99,
+  "quantity": 31
+}
+]

@@ -33,7 +33,7 @@ def contact(request):
         'title': 'Contact Us',
         'top__menu': [
             {'href': 'main', 'name': 'HOME'},
-            {'href': 'product', 'name': 'PRODUCTS'},
+            {'href': 'product:index', 'name': 'PRODUCTS'},
             {'href': 'main', 'name': 'HISTORY'},
             {'href': 'test', 'name': 'TEST_JSON'},
             {'href': 'contact', 'name': 'CONTACT'}],
@@ -42,7 +42,7 @@ def contact(request):
 
 
 def test(request):
-    json_data = open('static/test.json')
+    json_data = open('mainapp/json/test.json')
     jsn = json.load(json_data)
     json_data.close()
 
@@ -51,7 +51,7 @@ def test(request):
         'json': jsn,
         'top__menu': [
             {'href': 'main', 'name': 'HOME'},
-            {'href': 'product', 'name': 'PRODUCTS'},
+            {'href': 'product:index', 'name': 'PRODUCTS'},
             {'href': 'main', 'name': 'HISTORY'},
             {'href': 'test', 'name': 'TEST_JSON'},
             {'href': 'contact', 'name': 'CONTACT'}],
