@@ -9,6 +9,22 @@
                     <li><a href="#" class="top__menu_link">HISTORY</a></li>
                     <li><a href="{% url 'test' %}" class="top__menu_link">TEST_JSON</a></li>
                     <li><a href="{% url 'contact' %}" class="top__menu_link">CONTACT</a></li>
+
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'auth:edit' %}">
+                            {{ user.first_name|default:'Пользователь' }}
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        {% if user.is_authenticated %}
+                          <a href="{% url 'auth:logout' %}">выйти</a>
+                        {% else %}
+                          <a href="{% url 'auth:login' %}">войти</a>
+                        {% endif %}
+                    </li>
+
                     <li><a href="#" class="top__menu_link"><img src="static/images/search.png" alt="Поиск"></a></li>
                 </ul>
             </nav>
