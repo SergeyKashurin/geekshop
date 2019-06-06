@@ -24,6 +24,7 @@ class ShopUserEditForm(UserChangeForm):
 
         return data
 
+
 class ShopUserRegisterForm(UserCreationForm):
     class Meta:
         model = ShopUser
@@ -51,4 +52,5 @@ class ShopUserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(ShopUserLoginForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
+            field.help_text = ''
             field.widget.attrs['class'] = 'form-control'

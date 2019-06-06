@@ -8,7 +8,6 @@ from django.urls import reverse
 
 # Create your views here.
 def login(request):
-    title = 'Enter'
 
     login_form = ShopUserLoginForm(data=request.POST)
 
@@ -19,9 +18,13 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
             auth.login(request, user)
+
             return HttpResponseRedirect(reverse('main'))
 
-    content = {'title': title, 'login_form': login_form}
+    content = {
+        'title': 'Enter',
+        'login_form': login_form
+    }
     return render(request, 'authapp/login.html', content)
 
 
@@ -31,7 +34,6 @@ def logout(request):
 
 
 def register(request):
-    title = 'Registration'
 
     if request.method == 'POST':
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
@@ -42,13 +44,14 @@ def register(request):
     else:
         register_form = ShopUserRegisterForm()
 
-    content = {'title': title, 'register_form': register_form}
-
+    content = {
+        'title': 'Registration',
+        'register_form': register_form
+    }
     return render(request, 'authapp/register.html', content)
 
 
 def edit(request):
-    title = 'Editing'
     edit_form = ''
 
     if request.method == 'POST':
@@ -59,5 +62,8 @@ def edit(request):
         else:
             edit_form = ShopUserEditForm(instance=request.user)
 
-    content = {'title': title, 'edit_form': edit_form}
+    content = {
+        'title': 'Editing',
+        'edit_form': edit_form
+    }
     return render(request, 'authapp/edit.html', content)
