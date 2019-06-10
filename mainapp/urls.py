@@ -6,6 +6,7 @@ app_name = 'mainapp'
 
 urlpatterns = [
     path('', mainapp.product, name='index'),
-    path('<int:pk>/', mainapp.product, name='category'),
-    path('auth/', include('authapp.urls', namespace='auth'))
+    path('category/<int:pk>/', mainapp.product, name='category'),
+    # path('<int:pk>/', mainapp.product, name='category'),
+    # path('auth/', include('authapp.urls', namespace='auth'))
 ]

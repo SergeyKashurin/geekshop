@@ -1,0 +1,8 @@
+<li>
+  <a href="{% url 'product:index' %}"
+     class="{% if request.resolver_match.namespace == 'products' %}
+              active
+            {% endif %}">
+    продукты
+  </a>
+</li>

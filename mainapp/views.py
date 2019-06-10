@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import json
 from .models import ProductCategory, Product
 
@@ -16,16 +16,51 @@ def main(request):
 
 def product(request, pk=None):
     print(pk)
-    content = {
-        'title': 'Our Products Range',
-        'top__menu': [
-            {'href': 'main', 'name': 'HOME'},
-            {'href': 'product:index', 'name': 'PRODUCTS'},
-            {'href': 'main', 'name': 'HISTORY'},
-            {'href': 'test', 'name': 'TEST_JSON'},
-            {'href': 'contact', 'name': 'CONTACT'}],
+
+    links_menu = ProductCategory.objects.all()
+    title = 'Our Products Range'
+
+    if pk is not None:
+        if pk == 0:
+            products = Product.objects.order_by('price')
+            category = {'name': 'all'}
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = Product.objects.filter(category__pk=pk).order_by('price')
+
+        context = {
+            'title': title,
+            'links_menu': links_menu,
+            'category': category,
+            'product': products,
+        }
+
+        # context = {
+        #     'title': title,
+        #     'top__menu': [
+        #         {'href': 'main', 'name': 'HOME'},
+        #         {'href': 'product:index', 'name': 'PRODUCTS'},
+        #         # {'href': 'main', 'name': 'HISTORY'},
+        #         # {'href': 'test', 'name': 'TEST_JSON'},
+        #         {'href': 'contact', 'name': 'CONTACT'}],
+        # }
+        return render(request, 'mainapp/products_list.html', context)
+
+    same_products = Product.objects.all()[1:3]
+
+    context = {
+        'title': title,
+        'links_menu': links_menu,
+        'same_products': same_products
     }
-    return render(request, 'mainapp/product.html', content)
+
+    # context = {
+    #     'title': title,
+    #     'links_menu': links_menu,
+    #     'same_products': same_products
+    # }
+
+    return render(request, 'mainapp/product.html', context)
 
 
 def contact(request):
