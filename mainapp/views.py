@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 import json
 from .models import ProductCategory, Product
+from basketapp.models import Basket
 
 # Create your views here.
 
@@ -9,9 +10,9 @@ def main(request):
     title = 'Home'
     products = Product.objects.all()[:4]
 
-    content = {'title': title, 'products': products}
+    context = {'title': title, 'products': products}
 
-    return render(request, 'mainapp/index.html', content)
+    return render(request, 'mainapp/index.html', context)
 
 
 def product(request, pk=None):
@@ -20,30 +21,28 @@ def product(request, pk=None):
     links_menu = ProductCategory.objects.all()
     title = 'Our Products Range'
 
-    if pk is not None:
-        if pk == 0:
-            products = Product.objects.order_by('price')
-            category = {'name': 'all'}
-        else:
-            category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk).order_by('price')
+    basket = []
+    category = ''
+    products = ''
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+
+        if pk:
+            if pk == '0':
+                products = Product.objects.all().order_by('price')
+                category = {'name': 'все'}
+            else:
+                category = get_object_or_404(ProductCategory, pk=pk)
+                products = Product.objects.filter(category__pk=pk).order_by('price')
 
         context = {
             'title': title,
             'links_menu': links_menu,
             'category': category,
             'product': products,
+            'basket': basket,
         }
 
-        # context = {
-        #     'title': title,
-        #     'top__menu': [
-        #         {'href': 'main', 'name': 'HOME'},
-        #         {'href': 'product:index', 'name': 'PRODUCTS'},
-        #         # {'href': 'main', 'name': 'HISTORY'},
-        #         # {'href': 'test', 'name': 'TEST_JSON'},
-        #         {'href': 'contact', 'name': 'CONTACT'}],
-        # }
         return render(request, 'mainapp/products_list.html', context)
 
     same_products = Product.objects.all()[1:3]
@@ -53,12 +52,6 @@ def product(request, pk=None):
         'links_menu': links_menu,
         'same_products': same_products
     }
-
-    # context = {
-    #     'title': title,
-    #     'links_menu': links_menu,
-    #     'same_products': same_products
-    # }
 
     return render(request, 'mainapp/product.html', context)
 
