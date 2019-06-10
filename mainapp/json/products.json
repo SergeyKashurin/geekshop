@@ -20,5 +20,26 @@
   "description": "description Third chair",
   "price": 99,
   "quantity": 31
+},{
+  "category": "Classic",
+  "name": "FClassic chair",
+  "short_desc": "Classic short_desc",
+  "description": "Classic description Third chair",
+  "price": 99,
+  "quantity": 31
+},{
+  "category": "Classic",
+  "name": "SClassic chair",
+  "short_desc": "Sec Classic short_desc",
+  "description": "Second Classic description Third chair",
+  "price": 99,
+  "quantity": 31
+},{
+  "category": "Modern",
+  "name": "Modern chair",
+  "short_desc": "Mod short_desc",
+  "description": "Modern description Third chair",
+  "price": 99,
+  "quantity": 31
 }
 ]
