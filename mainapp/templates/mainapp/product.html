@@ -1,7 +1,39 @@
 {% extends 'mainapp/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block content %}
+
+    <div class="details-products">
+        <div class="details-slider">
+            <div class="slider-product">
+              <img src="/media/{{ hot_product.image }}">
+            </div>
+            <div class="slider-control">
+              <div class="block">
+                <a href="{% url 'product:product_details' 1 %}"><img src="/media/{{ hot_product.image }}" alt="" width="70"></a>
+              </div>
+              <div class="block">
+                <a href="{% url 'product:product_details' 2 %}"><img src="/media/{{ hot_product.image }}" alt="" width="70"></a>
+              </div>
+              <div class="block">
+                <a href="{% url 'product:product_details' 3 %}"><img src="/media/{{ hot_product.image }}" alt="" width="70"></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="description">
+            <h3 class="big-bold">{{ hot_product.name }}</h3>
+            <h3 class="red">горячее предложение</h3>
+            <p class="price">{{ hot_product.price }} <span>руб</span></p>
+            <a href="{% url 'basket:add' hot_product.pk %}" class="red-button">
+              заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+            <div class="description-text">
+              {{ hot_product.description }}
+            </div>
+        </div>
+    </div>
+
     <div class="trending__products">
         <div class="featured__new_aux">
             <ul class="trending__products_menu">
@@ -14,18 +46,18 @@
             </ul>
         </div>
         <div class="trending__products_items">
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_1.jpg' %}" alt="Somethink 1" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_2.jpg' %}" alt="Somethink 2" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_3.jpg' %}" alt="Somethink 3" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_4.jpg' %}" alt="Somethink 4" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_5.jpg' %}" alt="Somethink 5" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_6.jpg' %}" alt="Somethink 6" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_1.jpg' %}" alt="Somethink 1" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_2.jpg' %}" alt="Somethink 2" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_3.jpg' %}" alt="Somethink 3" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_4.jpg' %}" alt="Somethink 4" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_5.jpg' %}" alt="Somethink 5" class="trending__products_item"></a>
-            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_6.jpg' %}" alt="Somethink 6" class="trending__products_item"></a>
+            <a href="{% url 'product:product_details' 1 %}" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_1.jpg' %}" alt="Somethink 1" class="trending__products_item"></a>
+            <a href="{% url 'product:product_details' 2 %}" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_2.jpg' %}" alt="Somethink 2" class="trending__products_item"></a>
+            <a href="{% url 'product:product_details' 3 %}" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_3.jpg' %}" alt="Somethink 3" class="trending__products_item"></a>
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_4.jpg' %}" alt="Somethink 4" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_5.jpg' %}" alt="Somethink 5" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_6.jpg' %}" alt="Somethink 6" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_1.jpg' %}" alt="Somethink 1" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_2.jpg' %}" alt="Somethink 2" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_3.jpg' %}" alt="Somethink 3" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_4.jpg' %}" alt="Somethink 4" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_5.jpg' %}" alt="Somethink 5" class="trending__products_item"></a>-->
+<!--            <a href="product-details.html" class="trending__products_item_link"><img src="{% static 'images/trending__products/trending__products_6.jpg' %}" alt="Somethink 6" class="trending__products_item"></a>-->
         </div>
         <div class="trending__products_loading"><img src="{% static 'images/loading.png' %}" alt="Loading img" class="trending__products_loading_img"></div>
     </div>

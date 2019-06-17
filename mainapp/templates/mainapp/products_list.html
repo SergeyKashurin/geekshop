@@ -1,10 +1,10 @@
 {% extends 'mainapp/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block menu %}
   <div class="hero-white">
     <div class="header clearfix">
-      {% include 'includes/inc_menu.html' %}
+      {% include 'includes/inc_categories_menu.html' %}
     </div>
   </div>
 {% endblock %}
@@ -12,7 +12,7 @@
 {% block content %}
   <div class="details">
     <div class="links clearfix">
-      {% include 'includes/inc_product_categories_menu.html' %}
+      {% include 'includes/inc_menu.html' %}
     </div>
 
     <div class="products_list">
@@ -22,14 +22,15 @@
         </h2>
       </div>
       <div class="category-products clearfix">
+
         {% for prod in product %}
           <div class="block">
             <a href="{% url 'basket:add' prod.pk %}">
               <img src="/media/{{ prod.image }}" alt="{{ prod.short_desc }}">
               <div class="text">
                 <img src="{% static 'img/icon-hover.png' %}" alt="hover">
-                <h4>{{ product.name }}</h4>
-                <p>{{ product.description }} </p>
+                <h4>{{ prod.name }}</h4>
+                <p>{{ prod.description }} </p>
               </div>
             </a>
           </div>

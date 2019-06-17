@@ -6,26 +6,33 @@ from django.contrib import auth
 from django.urls import reverse
 
 
-# Create your views here.
 def login(request):
 
-    login_form = ShopUserLoginForm(data=request.POST)
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
-    if request.method == 'POST' and login_form.is_valid():
-        username = request.POST['username']
-        password = request.POST['password']
+    if request.method == 'POST':
+        form = ShopUserLoginForm(data=request.POST)
 
-        user = auth.authenticate(username=username, password=password)
-        if user and user.is_active:
-            auth.login(request, user)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
 
-            return HttpResponseRedirect(reverse('main'))
+            user = auth.authenticate(username=username, password=password)
+            if user and user.is_active:
+                auth.login(request, user)
 
-    content = {
-        'title': 'Enter',
-        'login_form': login_form
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
+                return HttpResponseRedirect(reverse('main'))
+    else:
+        form = ShopUserLoginForm()
+
+    context = {
+        'title': 'enter',
+        'form': form,
+        'next': next,
     }
-    return render(request, 'authapp/login.html', content)
+    return render(request, 'authapp/login.html', context)
 
 
 def logout(request):

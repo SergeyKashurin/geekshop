@@ -25,11 +25,11 @@ urlpatterns = [
     path('', mainapp.main, name='main'),
     path('product/', include('mainapp.urls', namespace='product')),
     path('contact/', mainapp.contact, name='contact'),
-    path('test/', mainapp.test, name='test'),
-    path('admin/', admin.site.urls),
+    path('admin/', include('adminapp.urls', namespace='admin')),
+    #path('admin/', admin.site.urls),
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('auth/', include('authapp.urls', namespace='auth')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

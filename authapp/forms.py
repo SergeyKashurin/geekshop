@@ -4,6 +4,17 @@ from django.contrib.auth.forms import AuthenticationForm
 from authapp.models import ShopUser
 
 
+class ShopUserLoginForm(AuthenticationForm):
+    class Meta:
+        model = ShopUser
+        fields = ('username', 'password')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
+
 class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
@@ -42,15 +53,3 @@ class ShopUserRegisterForm(UserCreationForm):
             raise forms.ValidationError('Вы слишком молоды!')
 
         return data
-
-
-class ShopUserLoginForm(AuthenticationForm):
-    class Meta:
-        model = ShopUser
-        fields = ('username', 'password')
-
-    def __init__(self, *args, **kwargs):
-        super(ShopUserLoginForm, self).__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.help_text = ''
-            field.widget.attrs['class'] = 'form-control'

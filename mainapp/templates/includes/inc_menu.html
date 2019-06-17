@@ -3,17 +3,21 @@
 
 <li>
   <a href="{% url 'product:index' %}"
-     class="{% if request.resolver_match.namespace == 'products' %}
-              active
+     class="{% if request.resolver_match.namespace == 'product' %}
+              top__menu_link_sctive
             {% endif %}">
-    продукты
+    products
   </a>
 </li>
-
+<li><a href="#" class="top__menu_link"><img src="static/images/search.png" alt="Поиск"></a></li>
+<li>
+    <a href="{% url 'basket:index' %}" class="basket">
+      <span>
+        {% if user.is_authenticated and basket %}
+          {{ basket.0.total_cost|floatformat:0 }} руб
+          ({{ basket.0.total_quantity }} шт)
+        {% endif %}
+      </span>
+    </a>
+</li>
 </ul>
-<a href="#" class="search"></a>
-<a href="{% url 'basket:view' %}" class="basket">
-    <span>
-        {% if basket %} {{ basket|length }} {% endif %}
-    </span>
-</a>
