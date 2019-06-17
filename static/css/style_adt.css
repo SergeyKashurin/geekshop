@@ -1292,3 +1292,72 @@ td:first-child {
 .related-products a:hover .text{
 	display: block;
 }
+
+.admin_container .menu span {
+    margin-left: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #111;
+}
+
+.admin_container .h2 {
+    margin-top: 10px;
+}
+
+.admin_menu {
+    display: block;
+    left: 15px;
+    top: 20px;
+    height: 40px;
+    width: 1200px;
+}
+
+.admin_menu ul.menu{
+    display: block;
+    float: none;
+    width: 1200px;
+    height: 50px;
+    margin: auto;
+    color: #555;
+}
+
+.category_record.not_active {
+    opacity: .3;
+}
+
+.user_record.not_active {
+    opacity: .3;
+}
+
+.menu {
+	list-style-type: none;
+	margin-top: 67px;
+	float: right;
+}
+.menu li {
+	float: left;
+}
+.menu a {
+	color: #8c8c8c;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: right;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 13px;
+}
+.menu .active {
+	color: #212121;
+	font-weight: 700;
+	border-bottom: 3px solid #212121;
+}
+.menu a:hover {
+	color: #212121;
+	font-weight: 700;
+	border-bottom: 3px solid #212121;
+}
+.menu a:active {
+	color: #8c8c8c;
+	font-weight: 700;
+	border-bottom: 3px solid #212121;
+}
