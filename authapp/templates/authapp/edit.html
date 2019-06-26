@@ -12,5 +12,5 @@
             на главную
         </a>
     </button>
-    <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+    <div class="user_avatar"><img src="/media/{{ user.avatar|default:'users_avatars/default.png' }}"></div>
 {% endblock %}

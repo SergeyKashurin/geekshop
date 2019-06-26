@@ -1,20 +1,18 @@
-[{
-  "name": "Home",
-  "description": "Things for your home"
-},
-{
-  "name": "Office",
-  "description": "Things for your office"
-},
-{
-  "name": "Furniture",
-  "description": "Any our furniture"
-},
-{
-  "name": "Modern",
-  "description": "Some modern things"
-},
-{
-  "name": "Classic",
-  "description": "Classic things"
-}]
+[
+    {
+        "name": "дом",
+        "description": "отличная мебель для домашнего интерьера."
+    },
+    {
+        "name": "офис",
+        "description": "стильная и надежная офисная мебель нового поколения."
+    },
+    {
+        "name": "модерн",
+        "description": "мебель в стиле МОДЕРН подойдет для любого интерьера."
+    },
+    {
+        "name": "классика",
+        "description": "классический стиль актуален в любые времена."
+    }
+]

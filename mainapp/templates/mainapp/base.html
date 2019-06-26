@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 <html>
 <head>
 	<meta charset="utf-8">
@@ -26,7 +26,7 @@
                     <a href="/" class="link__logo"><img src="{% static 'images/logo.png' %}" alt="logotip" title="logo" class="img__logo"></a>
                     <nav>
                         {% block menu_items %}
-                            {% include 'includes/inc_categories_menu.html' %}
+                            {% include '../includes/inc_categories_menu.html' %}
                         {% endblock %}
                     </nav>
                 </header>

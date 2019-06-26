@@ -1,9 +1,9 @@
-{% load staticfiles %}
+{% load static %}
 <ul class="top__menu">
     {% for link in top_menu %}
         <li>
             <a href="{% url link.href %}"
-               class="top__menu_link{% if request.resolver_match.url_name == link.href %}
+               class="top__menu_link{% if request.resolver_match.url_name == 'products' %}
                         top__menu_link_sctive
                       {% endif %}">
                 {{ link.name }}
@@ -34,13 +34,13 @@
     </li>
     <li><a href="#" class="top__menu_link"><img src="{% static '/images/search.png' %}" alt="Поиск"></a></li>
     <li>
+        {% if user.is_authenticated and basket %}
         <a href="{% url 'basket:index' %}" class="basket">
           <span>
-            {% if basket %}
               {{ basket.0.total_cost|floatformat:0 }} руб
               ({{ basket.0.total_quantity }} шт)
-            {% endif %}
           </span>
         </a>
+        {% endif %}
     </li>
 </ul>

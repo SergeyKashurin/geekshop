@@ -5,7 +5,7 @@
             <nav>
                 <ul class="top__menu">
                     <li><a href="/" class="top__menu_link top__menu_link_sctive">HOME</a></li>
-                    <li><a href="{% url 'product:index' %}" class="top__menu_link">PRODUCTS</a></li>
+                    <li><a href="{% url 'mainapp:products' %}" class="top__menu_link">PRODUCTS</a></li>
                     <li><a href="{% url 'contact' %}" class="top__menu_link">CONTACT</a></li>
 
                     {% if user.is_authenticated %}
@@ -33,14 +33,14 @@
 
                     <li><a href="#" class="top__menu_link"><img src="static/images/search.png" alt="Поиск"></a></li>
                     <li>
+                        {% if user.is_authenticated and basket %}
                         <a href="{% url 'basket:index' %}" class="basket">
                           <span>
-                            {% if user.is_authenticated and basket %}
                               {{ basket.0.total_cost|floatformat:0 }} руб
                               ({{ basket.0.total_quantity }} шт)
-                            {% endif %}
                           </span>
                         </a>
+                        {% endif %}
                     </li>
                 </ul>
             </nav>
