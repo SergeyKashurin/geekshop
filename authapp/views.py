@@ -10,7 +10,6 @@ from authapp.models import ShopUser
 
 
 def login(request):
-
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
     if request.method == 'POST':
@@ -31,7 +30,7 @@ def login(request):
         form = ShopUserLoginForm()
 
     context = {
-        'title': 'enter',
+        'title': 'Вход',
         'form': form,
         'next': next,
     }
@@ -44,7 +43,6 @@ def logout(request):
 
 
 def register(request):
-
     if request.method == 'POST':
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
 
@@ -59,7 +57,7 @@ def register(request):
     else:
         register_form = ShopUserRegisterForm()
         content = {
-            'title': 'Registration',
+            'title': 'Регистрация',
             'register_form': register_form
         }
         return render(request, 'authapp/register.html', content)
@@ -77,7 +75,7 @@ def edit(request):
             edit_form = ShopUserEditForm(instance=request.user)
 
     content = {
-        'title': 'Editing',
+        'title': 'Редактирование',
         'edit_form': edit_form
     }
     return render(request, 'authapp/edit.html', content)

@@ -1,15 +1,23 @@
 {% load static %}
 <ul class="top__menu">
-    {% for link in top_menu %}
-        <li>
-            <a href="{% url link.href %}"
-               class="top__menu_link{% if request.resolver_match.url_name == 'products' %}
-                        top__menu_link_sctive
-                      {% endif %}">
-                {{ link.name }}
-            </a>
-        </li>
-    {% endfor %}
+    <li>
+        <a href="{% url 'main' %}"
+           class="{% if request.resolver_match.url_name == 'index' %}top__menu_link_sctive{% endif %} top__menu_link">
+            HOME
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'mainapp:products' %}"
+           class="{% if request.resolver_match.url_name == 'products' %}top__menu_link_sctive{% endif %} top__menu_link">
+            PRODUCTS
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'mainapp:contact' %}"
+           class="{% if request.resolver_match.url_name == 'contact' %}top__menu_link_sctive{% endif %} top__menu_link">
+            CONTACT
+        </a>
+    </li>
     {% if user.is_authenticated %}
     <li>
         <a href="{% url 'auth:edit' %}" class="top__menu_link">

@@ -1,4 +1,4 @@
-{% extends 'adminapp/base.html' %}
+{% include 'adminapp/base.html' %}
 {% load static %}
 
 
@@ -12,13 +12,12 @@
       {% endif %})
     {% endif %}
     ?
-    <form action="{% url 'admin:user_delete' user_to_delete.pk %}"
-          method="post">
+    <form action="{% url 'admin:user_delete' user_to_delete.pk %}" method="post">
       {% csrf_token %}
       <input class="btn btn-danger" type="submit" value="удалить">
     </form>
     <button class="btn btn-success">
-      <a href="{% url 'admin:users' %}">
+      <a href="{% url 'admin:index' %}">
         Отмена
       </a>
     </button>

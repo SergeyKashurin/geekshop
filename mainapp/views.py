@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-import json
-import random
-from .models import ProductCategory, Product
-from basketapp.models import Basket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404
+from .models import ProductCategory, Product
+import random
 
 
 def index(request):
@@ -16,13 +14,12 @@ def index(request):
 
 def main(request):
     title = 'Home'
-    product = Product.objects.all()[:4]
+    products = Product.objects.all()[:4]
 
     context = {
         'title': title,
-        'product': product,
+        'product': products,
     }
-
     return render(request, 'mainapp/index.html', context)
 
 
@@ -56,24 +53,6 @@ def get_hot_product():
 
 def get_same_products(hot_product):
     return hot_product.category.product_set.exclude(pk=hot_product.pk)
-
-
-# def product(request):
-#     product = Product.objects.all()
-#     hot_product = get_hot_product()
-#
-#     context = {
-#         'page_title': 'каталог',
-#         'product': product,
-#         'top_menu': [
-#             {'href': 'main', 'name': 'HOME'},
-#             {'href': 'product:index', 'name': 'PRODUCTS'},
-#             {'href': 'contact', 'name': 'CONTACT'}],
-#         'basket': get_basket(request),
-#         'hot_product': hot_product,
-#         'same_products': get_same_products(hot_product),
-#     }
-#     return render(request, 'mainapp/products.html', context)
 
 
 def products(request):
@@ -130,7 +109,6 @@ def catalog(request, pk, page=1):
         'catalog_menu': get_menu(),
         'basket': get_basket(request),
     }
-
     return render(request, 'mainapp/products_list.html', context)
 
 
