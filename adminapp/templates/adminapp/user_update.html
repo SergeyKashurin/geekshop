@@ -1,15 +1,19 @@
-{% extends 'authapp/base.html' %}
+{% include 'adminapp/base.html' %}
 {% load static %}
 
-{% block content %}
-  <form class="form-horizontal" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ update_form.as_p }}
-    <input class="form-control" type="submit" value="сохранить">
-  </form>
-  <button class="btn btn-round form-control last">
-    <a href="{% url 'admin:users' %}">
-      к списку пользователей
+{% block menu %}
+{% endblock %}
+
+{% block container %}
+  <div class="product_read">
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-control" type="submit" value="сохранить">
+    </form>
+    <a href="{% url 'admin:index' %}"
+       class="btn btn-primary form-control last">
+        к списку пользователей
     </a>
-  </button>
+  </div>
 {% endblock %}
