@@ -55,7 +55,7 @@
           <a href="{% url 'auth:login' %}" class="top__menu_link">ВОЙТИ</a>
         {% endif %}
     </li>
-    <li><a href="#" class="top__menu_link"><img src="{% static '/images/search.png' %}" alt="Поиск"></a></li>
+    <li><a href="#" class="top__menu_link"><img src="{% static 'images/search.png' %}" alt="Поиск"></a></li>
     <li>
         {% if user.is_authenticated and basket %}
         <a href="{% url 'basket:index' %}" class="basket">

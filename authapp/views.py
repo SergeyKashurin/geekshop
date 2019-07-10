@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm
 from authapp.forms import ShopUserEditForm
@@ -12,31 +13,31 @@ from authapp.models import ShopUser
 
 
 def login(request):
+    title = 'вход'
+
+    login_form = ShopUserLoginForm(data=request.POST or None)
+
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
-    if request.method == 'POST':
-        form = ShopUserLoginForm(data=request.POST)
+    if request.method == 'POST' and login_form.is_valid():
+        username = request.POST['username']
+        password = request.POST['password']
 
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-
-            user = auth.authenticate(username=username, password=password)
-            if user and user.is_active:
-                auth.login(request, user)
-
-                if 'next' in request.POST.keys():
-                    return HttpResponseRedirect(request.POST['next'])
+        user = auth.authenticate(username=username, password=password)
+        if user and user.is_active:
+            auth.login(request, user)
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(request.POST['next'])
+            else:
                 return HttpResponseRedirect(reverse('main'))
-    else:
-        form = ShopUserLoginForm()
 
-    context = {
-        'title': 'Вход',
-        'form': form,
-        'next': next,
+    content = {
+        'title': title,
+        'login_form': login_form,
+        'next': next
     }
-    return render(request, 'authapp/login.html', context)
+
+    return render(request, 'authapp/login.html', content)
 
 
 def logout(request):
@@ -45,26 +46,28 @@ def logout(request):
 
 
 def register(request):
+    title = 'регистрация'
+
     if request.method == 'POST':
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
 
         if register_form.is_valid():
             user = register_form.save()
             if send_verify_mail(user):
-                print('сообщение подтверждения отправлено')
+                print('сообщение для подтверждения регистрации отправлено')
                 return HttpResponseRedirect(reverse('auth:login'))
             else:
-                print('ошибка отправки сообщения')
+                print('ошибка отправки сообщения для подтверждения регистрации')
                 return HttpResponseRedirect(reverse('auth:login'))
     else:
         register_form = ShopUserRegisterForm()
-        content = {
-            'title': 'Регистрация',
-            'register_form': register_form
-        }
-        return render(request, 'authapp/register.html', content)
+
+    content = {'title': title, 'register_form': register_form}
+
+    return render(request, 'authapp/register.html', content)
 
 
+@login_required
 def edit(request):
     edit_form = ''
 
@@ -86,9 +89,9 @@ def edit(request):
 def send_verify_mail(user):
     verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
 
-    title = f'Подтверждение учетной записи {user.username}'
+    title = 'Подтверждение учетной записи {}'.format(user.username)
 
-    message = f'Для подтверждения учетной записи {user.username} на портале {settings.DOMAIN_NAME} перейдите по ссылке: \n{settings.DOMAIN_NAME}{verify_link}'
+    message = 'Для подтверждения учетной записи {} на портале {} перейдите по ссылке: \n{}{}'.format(user.username, settings.DOMAIN_NAME, settings.DOMAIN_NAME, verify_link)
 
     return send_mail(title, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
 
@@ -102,10 +105,8 @@ def verify(request, email, activation_key):
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return render(request, 'authapp/verification.html')
         else:
-            print(f'error activation user: {user}')
             return render(request, 'authapp/verification.html')
     except Exception as e:
-        print(f'error activation user : {e.args}')
         return HttpResponseRedirect(reverse('main'))
 
 
