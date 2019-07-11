@@ -14,7 +14,7 @@ def index(request):
 
 def main(request):
     title = 'Home'
-    products = Product.objects.all()[:4]
+    products = Product.objects.all().select_related()[:4]
 
     context = {
         'title': title,
@@ -25,14 +25,14 @@ def main(request):
 
 def get_basket(request):
     if request.user.is_authenticated:
-        return request.user.basket.all()
+        return request.user.basket.all().select_related()
     else:
         return []
 
 
 def get_basket_deleteme(request):
     if request.is_authenticated:
-        return request.basket.all()
+        return request.basket.all().select_related()
     else:
         return []
 
@@ -49,7 +49,7 @@ def get_top_menu():
 
 
 def get_hot_product():
-    return random.choice(Product.objects.all())
+    return random.choice(Product.objects.all().select_related())
 
 
 def get_same_products(hot_product):
@@ -57,7 +57,7 @@ def get_same_products(hot_product):
 
 
 def products(request):
-    products = Product.objects.all()
+    products = Product.objects.all().select_related()
     hot_product = get_hot_product()
 
     context = {
@@ -79,7 +79,6 @@ def product(request, pk):
         'top_menu': get_top_menu(),
         'basket': get_basket(request),
     }
-
     return render(request, 'mainapp/product.html', context)
 
 
@@ -92,7 +91,7 @@ def catalog(request, pk, page=1):
         products = Product.objects.filter(is_active=True)
     else:
         category = get_object_or_404(ProductCategory, pk=pk)
-        products = category.product_set.all()
+        products = category.product_set.all().select_related()
 
     paginator = Paginator(products, 2)
     try:
@@ -127,7 +126,7 @@ def product_details(request, pk=None):
             {'href': 'main', 'name': 'HOME'},
             {'href': 'product:index', 'name': 'PRODUCTS'},
             {'href': 'contact', 'name': 'CONTACT'}],
-        'links_menu': ProductCategory.objects.all(),
+        'links_menu': ProductCategory.objects.all().select_related(),
         'product': get_object_or_404(Product, pk=pk),
         'basket': get_basket_deleteme(request.user),
     }
