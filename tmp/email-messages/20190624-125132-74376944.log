@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IFRlc3Qz?=
+From: django@geekshop.local
+To: sergey-kashurin@mail.ru
+Date: Mon, 24 Jun 2019 09:51:32 -0000
+Message-ID: <156136989263.6652.4996703798462240826@###>
+
+Для подтверждения учетной записи Test3 на портале http://localhost:8000 перейдите по ссылке: 
+http://localhost:8000/auth/verify/sergey-kashurin@mail.ru/6ea1374d574ae7ffc56b5fdb9384b8adac819260/
+-------------------------------------------------------------------------------

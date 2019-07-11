@@ -1,25 +1,12 @@
-'use strict';
+"use strict";
 
-const e = React.createElement;
-
-class LikeButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { liked: false };
-  }
-
-  render() {
-    if (this.state.liked) {
-      return 'You liked this.';
-    }
-
-    return e(
-      'button',
-      { onClick: () => this.setState({ liked: true }) },
-      'Like'
-    );
-  }
-}
-
-const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+React.createElement(Dropdown, null, React.createElement(Dropdown.Toggle, {
+  variant: "success",
+  id: "dropdown"
+}, "Dropdown Button"), React.createElement(Dropdown.Menu, null, React.createElement(Dropdown.Item, {
+  href: "#/action-1"
+}, "Action"), React.createElement(Dropdown.Item, {
+  href: "#/action-2"
+}, "Another action"), React.createElement(Dropdown.Item, {
+  href: "#/action-3"
+}, "Something else")));

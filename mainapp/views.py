@@ -47,6 +47,7 @@ def get_top_menu():
         {'href': 'mainapp:products', 'name': 'PRODUCTS'},
         {'href': 'contact', 'name': 'CONTACT'}]
 
+
 def get_hot_product():
     return random.choice(Product.objects.all())
 

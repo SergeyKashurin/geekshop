@@ -1,0 +1,7 @@
+http://151.248.122.171/contact/
+http://151.248.122.171/product/
+http://151.248.122.171/product/catalog/1/
+http://151.248.122.171/product/catalog/1/1/
+http://151.248.122.171/product/contact/
+http://151.248.122.171/product/product/1/
+http://151.248.122.171/product/products/

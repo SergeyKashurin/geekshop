@@ -86,7 +86,8 @@ if DEBUG:
        'template_profiler_panel.panels.template.TemplateProfilerPanel',
    ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 ROOT_URLCONF = 'geekshop.urls'
 
@@ -131,17 +132,17 @@ SOCIAL_AUTH_PIPELINE = (
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-      'default': {
-          'ENGINE': 'django.db.backends.sqlite3',
-          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-     },
-    #'default': {
-    #    'NAME': 'geekshop', # название базы данные
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'USER': 'django', # пользователь в базе данных
-    #    'PASSWORD': 'geekbrains', # пароль пользователя в бд
-    #    'HOST': 'localhost' # где находиться бд
-    #}
+     # 'default': {
+     #     'ENGINE': 'django.db.backends.sqlite3',
+     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     #},
+    'default': {
+        'NAME': 'geekshop', # название базы данные
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'django', # пользователь в базе данных
+        'PASSWORD': 'geekbrains', # пароль пользователя в бд
+        'HOST': 'localhost' # где находиться бд
+    }
 }
 
 
@@ -196,10 +197,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
